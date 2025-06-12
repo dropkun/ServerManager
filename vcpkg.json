@@ -1,0 +1,9 @@
+{
+  "name": "discordbot",
+  "version": "0.0.1",
+  "dependencies": [
+    "dpp",
+    "nlohmann-json",
+    "google-cloud-cpp[compute]"
+  ]
+}
