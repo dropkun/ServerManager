@@ -4,6 +4,9 @@
   "dependencies": [
     "dpp",
     "nlohmann-json",
-    "google-cloud-cpp[compute]"
+    {
+      "name": "google-cloud-cpp",
+      "features": [ "compute" ]
+    }
   ]
 }
