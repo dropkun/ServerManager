@@ -28,7 +28,7 @@ jobs:
 
       - name: Install vcpkg dependencies
         run: |
-          ./vcpkg/vcpkg install --triplet x64-linux --feature-flags "dependencies,versions"
+          ./vcpkg/vcpkg install dpp nlohmann-json google-cloud-cpp --triplet x64-linux
 
       - name: Configure CMake
         run: |
