@@ -18,5 +18,5 @@ gce.cpp
 target_link_libraries(discordbot PRIVATE
 google-cloud-cpp::compute
 dpp::dpp
-laserpants::dotenv)
+dotenv)
 
