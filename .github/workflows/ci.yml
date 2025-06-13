@@ -31,9 +31,12 @@ jobs:
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-
+            
+      - name: Check vcpkg disk usage
+        run: du -sh vcpkg/*
 
       - name: Install dependencies
-        run: ./vcpkg/vcpkg install --triplet x64-linux
+        run: ./vcpkg/vcpkg install --triplet x64-linux-release
 
       - name: Configure CMake
         run: |
