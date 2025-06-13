@@ -42,7 +42,7 @@ jobs:
         run: |
           cmake -S . -B build \
             -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake \
-            -DVCPKG_TARGET_TRIPLET=x64-linux \
+            -DVCPKG_TARGET_TRIPLET=x64-linux-release \
             -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
