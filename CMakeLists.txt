@@ -4,6 +4,8 @@ project(DiscordBot)
 # C++17 以降を使用
 set(CMAKE_CXX_STANDARD 20)
 
+add_subdirectory(external/dotenv)
+
 # 必要なパッケージを探す（vcpkgでインストール済み前提）
 find_package(dpp CONFIG REQUIRED)
 find_package(google_cloud_cpp_compute CONFIG REQUIRED)
