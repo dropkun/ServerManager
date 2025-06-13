@@ -9,7 +9,6 @@ add_subdirectory(external/dotenv)
 # 必要なパッケージを探す（vcpkgでインストール済み前提）
 find_package(dpp CONFIG REQUIRED)
 find_package(google_cloud_cpp_compute CONFIG REQUIRED)
-find_package(laserpants_dotenv)
 
 add_executable(discordbot
 main.cpp
