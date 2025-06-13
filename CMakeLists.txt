@@ -4,7 +4,7 @@ project(DiscordBot)
 # C++17 以降を使用
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(external/dotenv)
+add_subdirectory(dotenv-cpp)
 
 # 必要なパッケージを探す（vcpkgでインストール済み前提）
 find_package(dpp CONFIG REQUIRED)
