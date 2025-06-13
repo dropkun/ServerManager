@@ -53,3 +53,18 @@ jobs:
         with:
           name: discordbot-linux
           path: build/discordbot-linux.tar.gz
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to ConoHa VPS
+        run: |
+          scp build/discordbot-linux.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/tmp/
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "\
+            mkdir -p ~/discordbot && \
+            tar -xzf /tmp/discordbot-linux.tar.gz -C ~/discordbot && \
+            rm /tmp/discordbot-linux.tar.gz"
