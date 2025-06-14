@@ -76,4 +76,5 @@ jobs:
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "\
             mkdir -p ~/discordbot && \
             tar -xzf /tmp/discordbot-linux.tar.gz -C ~/discordbot && \
-            rm /tmp/discordbot-linux.tar.gz"
+            rm /tmp/discordbot-linux.tar.gz && \
+            sudo systemctl restart discordbot.service"
