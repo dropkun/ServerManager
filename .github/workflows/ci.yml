@@ -43,10 +43,16 @@ jobs:
       - name: Build
         run: cmake --build build --config Release --parallel
 
-      - name: Package binary
+      - name: Package binary with shared libraries
         run: |
-          cd build
-          tar -czf discordbot-linux.tar.gz discordbot
+          mkdir -p build/package
+          cp build/discordbot build/package/
+
+          # lddで依存ライブラリを取得し、存在する.soをコピー
+          ldd build/discordbot | awk '{print $3}' | grep '^/' | xargs -I{} cp -v {} build/package/ || true
+
+          cd build/package
+          tar -czf ../discordbot-linux.tar.gz *
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
