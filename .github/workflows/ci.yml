@@ -1,4 +1,4 @@
-name: CI & Build Linux Binary
+name: CI & CD
 
 on:
   push:
@@ -34,14 +34,10 @@ jobs:
           ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Configure CMake
-        run: |
-          cmake -S . -B build \
-            -DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake \
-            -DVCPKG_TARGET_TRIPLET=x64-linux-release \
-            -DCMAKE_BUILD_TYPE=Release
+        run: cmake --preset linux-release
 
       - name: Build
-        run: cmake --build build --config Release --parallel
+        run: cmake --build --preset linux-release
 
       - name: Package binary with shared libraries
         run: |

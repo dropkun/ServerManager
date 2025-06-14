@@ -1,11 +1,41 @@
 {
   "version": 4,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
   "configurePresets": [
     {
-      "name": "default",
+      "name": "local",
+      "displayName": "Local Build",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_TOOLCHAIN_FILE": "/Users/junyaiio/repositories/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Linux Release Build with vcpkg",
+      "description": "Build with vcpkg toolchain and release mode",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x64-linux-release",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "linux-release",
+      "configurePreset": "ci-linux-release",
+      "description": "Build for CI using preset",
+      "jobs": 0,  // ← --parallel
+      "configuration": "Release"
     }
   ]
 }
