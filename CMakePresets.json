@@ -32,7 +32,7 @@
   "buildPresets": [
     {
       "name": "linux-release",
-      "configurePreset": "ci-linux-release",
+      "configurePreset": "linux-release",
       "description": "Build for CI using preset",
       "jobs": 0,  // ← --parallel
       "configuration": "Release"
