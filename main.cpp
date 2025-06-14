@@ -29,7 +29,7 @@ int main()
                                 ZONE,
                                 INSTANCE_NAME);
 
-    bot.on_slashcommand([&bot, instance](const dpp::slashcommand_t &event)
+    bot.on_slashcommand([&bot, &instance](const dpp::slashcommand_t &event)
                         {
         const auto name = event.command.get_command_name();
 
