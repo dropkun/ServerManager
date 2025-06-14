@@ -48,8 +48,8 @@ jobs:
           mkdir -p build/package/lib
           cp build/discordbot build/package/
 
-          # 依存ライブラリをlibにコピー
-          ldd build/discordbot | awk '{print $3}' | grep '^/' | xargs -I{} cp -v {} build/package/lib/ || true
+          # 必要な共有ライブラリだけを lib にコピー（libdpp.so など）
+          ldd build/discordbot | awk '{print $3}' | grep '^/' | egrep 'libdpp|libboost|libprotobuf' | xargs -I{} cp -v {} build/package/lib/ || true
 
           # 実行時に lib ディレクトリから共有ライブラリを探すように rpath を設定
           patchelf --set-rpath '$ORIGIN/lib' build/package/discordbot
