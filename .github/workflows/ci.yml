@@ -45,11 +45,14 @@ jobs:
 
       - name: Package binary with shared libraries
         run: |
-          mkdir -p build/package
+          mkdir -p build/package/lib
           cp build/discordbot build/package/
 
-          # lddで依存ライブラリを取得し、存在する.soをコピー
-          ldd build/discordbot | awk '{print $3}' | grep '^/' | xargs -I{} cp -v {} build/package/ || true
+          # 依存ライブラリをlibにコピー
+          ldd build/discordbot | awk '{print $3}' | grep '^/' | xargs -I{} cp -v {} build/package/lib/ || true
+
+          # 実行時に lib ディレクトリから共有ライブラリを探すように rpath を設定
+          patchelf --set-rpath '$ORIGIN/lib' build/package/discordbot
 
           cd build/package
           tar -czf ../discordbot-linux.tar.gz *
