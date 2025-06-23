@@ -9,11 +9,14 @@
     {
       "name": "local",
       "displayName": "Local Build",
-      "generator": "Ninja",
+      "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
+        "CMAKE_MAKE_PROGRAM":"/usr/bin/make",
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_TOOLCHAIN_FILE": "/Users/junyaiio/repositories/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "/Users/junyaiio/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_C_COMPILER": "/usr/bin/clang",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
       }
     },
     {
@@ -34,7 +37,7 @@
       "name": "linux-release",
       "configurePreset": "linux-release",
       "description": "Build for CI using preset",
-      "jobs": 0,  // ← --parallel
+      "jobs": 0,
       "configuration": "Release"
     }
   ]

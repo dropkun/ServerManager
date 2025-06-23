@@ -11,7 +11,7 @@
 // GCE起動処理
 std::string PROJECT_ID = "droprealms";
 std::string ZONE = "asia-northeast1-a";
-std::string INSTANCE_NAME = "mc-bedrock";
+std::string INSTANCE_NAME = "nasi-minecraft";
 
 int main()
 {
